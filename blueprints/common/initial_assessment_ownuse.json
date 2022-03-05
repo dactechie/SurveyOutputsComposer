@@ -1,0 +1,18 @@
+{
+  "_Sections": {
+    "Intro": "own_use/InitialAssessment",
+    "EverydayLiving": "own_use",
+    "HousingAndSafety": "common/InitialAssessment",
+    "SDS": "common",
+    "FinalChecklist": "common"
+  },
+  "_Layout": {
+    "General": [
+      "Intro",
+      "EverydayLiving",
+      "HousingAndSafety",
+      "SDS",
+      "FinalChecklist"
+    ]
+  }
+}

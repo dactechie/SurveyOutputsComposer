@@ -1,0 +1,73 @@
+ { 
+ "title": "ATOM Initial Assessment",
+ "pages" :
+ [
+   {
+    "name": "survey_meta",
+    "elements":[
+      {
+        "type": "radiogroup",
+        "name": "ClientType",
+        "title": "Client Type",
+        
+        "isRequired": true,
+        "choices": [
+         {
+          "value": "ownuse",
+          "text": "Own Substance Use"
+         },
+         {
+          "value": "othersuse",
+          "text": "Other's Substance Use"
+         }
+        ]
+       },
+       {
+        "type": "dropdown",
+        "name": "Relationship",
+        "visibleIf": "{ClientType} = 'othersuse'",
+        "title": "Your relationship to the person using alcohol or other drugs?",        
+        "choices": [
+         "Partner",
+         "Ex-partner",
+         "Child",
+         "Parent",
+         "Sibling",
+         "Other family member",
+         "Friend"
+        ]
+       } 
+    ]
+
+   },
+
+    
+  {
+   "name": "maindoc",
+   "elements":[
+     {
+    "type": "matrixdynamic",
+     "name": "PDC",
+     "title": "Main Substance of Concern / Gambling",
+     "columns": [
+      {
+       "name": "PDCSubstanceOrGambling",
+       "title": "Drug of concern/Gambling",
+       "cellType": "dropdown",
+       "isRequired": true,
+       "choices": [
+        {
+          "value": "Ethanol",
+          "text": "Alcohol (Ethanol)"
+        },
+        "Amphetamines, n.f.d."        
+       ]
+      }
+     ]
+     }
+   ]
+
+  }
+ ]
+
+}

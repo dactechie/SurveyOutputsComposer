@@ -1,0 +1,190 @@
+{
+  "SLK": "AMEEZ230420072",
+  "AssessmentType": "ATOM Initial Assessment",
+  "Program": "TSS",
+  "AssessmentDate": "2021-08-27",
+  "ClientType": "ownuse",
+  "IndigenousStatus": "Both Aboriginal and Torres Strait Islander",
+  "PreferredLanguage": "Anuak",
+  "CountryOfBirth": "Argentina",
+  "PDC": [
+    {
+      "PDCSubstanceOrGambling": "Methamphetamine",
+      "PDCMethodOfUse": "Smoke",
+      "PDCDaysInLast28": "14",
+      "PDCUnits": "lines",
+      "PDCHowMuchPerOccasion": "70-79",
+      "PDCAgeFirstUsed": 10,
+      "PDCAgeLastUsed": 99,
+      "PDCGoals": "Maintain Abstinence"
+    }
+  ],
+  "PDCnotes": "ghfkyhygfuglkjhn",
+  "Anyodc": "yes",
+  "ODC": [
+    {
+      "OtherSubstancesConcernGambling": "MDMA/Ecstasy",
+      "MethodOfUse": "Smoke",
+      "DaysInLast28": "15",
+      "Units": "dosage (mls)",
+      "HowMuchPerOccasion": "7",
+      "AgeFirstUsed": 5,
+      "AgeLastUsed": 70,
+      "Goals": "Maintain Abstinence"
+    },
+    {},
+    {},
+    {},
+    {}
+  ],
+  "NotesODC": "fjhfguhghlkhnl;khuotyf",
+  "HaveYouEverInjected": "Yes",
+  "HowLongSinceLastInjected": "Within last 4 weeks",
+  "HaveYouEverSharedEquipment": "Yes",
+  "Past4WkNumInjectingDays": "28",
+  "SDSIsAODUseOutOfControl": "0",
+  "SDSDoesMissingFixMakeAnxious": "3",
+  "SDSHowMuchDoYouWorryAboutAODUse": "0",
+  "SDSDoYouWishToStop": "0",
+  "SDSHowDifficultToStopOrGoWithout": "3",
+  "SDS_Score": 6,
+  "Past4WkAodRisks": [
+    "Memory Loss",
+    "Using more than one drug at a time",
+    "Unsafe sex",
+    "Driving with drugs and/or alcohol in your system",
+    "Overdose or hospitalisation from drinking / using drugs",
+    "Attended by an ambulance or been in hospital",
+    "Sharing injecting equipment",
+    "Violence / Assault",
+    "Using Alone",
+    "Blackouts"
+  ],
+  "Past4WkAodRisks-Comment": "jgfdgfdhgfjkhg",
+  "Past4WkAnyOtherAddictiveB": "Yes",
+  "OtherAddictiveBehaviours": {
+    "Porn": { "Days": "13" },
+    "Gambling": { "Days": "1" },
+    "Internet / Social Media": { "Days": "15" },
+    "Sex": { "Days": "5" },
+    "Gaming": { "Days": "12" },
+    "Hoarding": { "Days": "12" },
+    "Other (detail in notes below)": { "Days": "18" }
+  },
+  "BehavioursOfDependenceNotes": "mbmhkgjyfytfuyhfuoyfg",
+  "SubstanceUseITSPIssues": "gfrsgarzhy",
+  "SubstanceUseITSPGoals": "trht6uew7i",
+  "Past4WkEngagedInOtheractivities": {
+    "Voluntary Work": {
+      "Frequency": "Three or four times per week",
+      "Days": "4"
+    },
+    "Paid Work": { "Frequency": "Less than weekly", "Days": "10" },
+    "Study - college, school or vocational education": {
+      "Frequency": "Three or four times per week",
+      "Days": "17"
+    },
+    "Looking after children": {
+      "Frequency": "Daily or almost daily",
+      "Days": "5"
+    },
+    "Other caregiving activities": {
+      "Frequency": "Less than weekly",
+      "Days": "4"
+    }
+  },
+  "HowDoYouSpendTime": [
+    "AODSourcingUsing",
+    "FamilyHome",
+    "MeTime",
+    "OtherBehavioursDependence",
+    "HobbiesSportsRecreation",
+    "WorkOrStudy"
+  ],
+  "Past4WkDailyLivingImpacted": "Daily or almost daily",
+  "PrioritiseCare": "I'm unable to",
+  "EverydayLivingITSPIssues": "agh7e5ysy3",
+  "EverydayLivingITSPGoals": "wwh745hde",
+  "LivingArrangement": "Friend(s)/parent(s)/relative(s) and child(ren)",
+  "UsualAccommodation": "Supported accommodation facility",
+  "YourCurrentHousing": "Temporary housing / couch surfing",
+  "Past4WkDifficultyFindingHousing": "Three or four times per week",
+  "DoYouFeelSafeWhereYouLive": "Never feel safe / Constantly exposed to violence",
+  "HousingSafetyITSPIssues": "r5h62w8nj2",
+  "HousingSafetyITSPGoals": "dutyrjhu2uwn",
+  "Past4WkPhysicalHealth": "2",
+  "Past4WkHowOftenPhysicalHealthCausedProblems": "Not at all",
+  "Past4WkBeenHospCallAmbulance": "Yes",
+  "Past4WkBeenHospCallAmbulanceNotes": "wa3y5ha",
+  "AreYouCurrentlyTakingMeds": "Yes",
+  "MedicationsNotes": "ahg4etgt5a546",
+  "HealthChecklist_STAFF": [
+    "Vaccinations",
+    "BBVScreening",
+    "SexualHealth",
+    "Dental"
+  ],
+  "PhysicalHealthITSPIssues": "dgrr6gya2q",
+  "PhysicalHealthITSPGoals": "r5yuaw7u54y7",
+  "Past4WkHowOftenMentalHealthCausedProblems": "Daily or almost daily",
+  "Past4WkMentalHealth": "10",
+  "EverDiagnosedMentalHealthIssue": "No",
+  "MHRecentRiskIssues": [
+    "Suicidal thoughts, ideation, planning, attempts (RISK ASSESSMENT)",
+    "Mood or affect concerns, including profound, persistent hopelessness (RISK ASSESSMENT)",
+    "Currently on PTO",
+    "Emotional abuse",
+    "Suicide of significant other",
+    "Extreme stress",
+    "Withdrawn",
+    "Recent physical abuse",
+    "Prison / custody / legal problems",
+    "Thought content concerns, including delusional content"
+  ],
+  "MHRecentRiskIssues-Comment": "TEHA%T",
+  "MHHistoricalRiskIssues": [
+    "History of mental health issues",
+    "Past sexual abuse",
+    "Prison, custody, legal problems",
+    "History of impulsive and/or aggressive actions",
+    "Emotional abuse"
+  ],
+  "MHHistoricalRiskIssues-Comment": "ah6w45t",
+  "K10Q01": "2",
+  "K10Q03": "3",
+  "K10Q05": "2",
+  "K10Q04": "4",
+  "K10Q02": "1",
+  "K10Q06": "4",
+  "K10Q07": "3",
+  "MentalITSPIssues": "aet5yyqa35",
+  "MentalHealthITSPGoals": "awy54q3q",
+  "K10Q10": "3",
+  "K10Q09": "3",
+  "HaveAnySocialSupport": "Quite a lot",
+  "Past4WkUseLedToProblemsWithFamilyFriend": "Less than weekly",
+  "HaveDVOrFamilySafetyConcerns": "No",
+  "Past4WkHaveYouViolenceAbusive": "No",
+  "Past4WkHadCaregivingResponsibilities": "Yes",
+  "PrimaryCaregiver": [
+    "Yes - parenting responsibilities but children don't live with me",
+    "Yes - primary caregiver: children 5 - 15 years old"
+  ],
+  "PrimaryCaregiver-Comment": "sjrrjhgs",
+  "ChildProtectionConcerns": "No",
+  "RelationshipsITSPIssues": "dj6ur5w",
+  "RelationshipsITSPGoals": "u6s6u6dsyr",
+  "Past4WkHowOftenIllegalActivities": "Daily or almost daily",
+  "FinalChecklist": ["ConsentToShareInfo"],
+  "RiskAssessmentNotes": "dctukied7i",
+  "RiskAssessmentChecklist": ["IndicationMHRisks"],
+  "ExternalReferrals-Comment": "e5m 7ik",
+  "ExternalReferrals": ["Mental Health"],
+  "SupportTypeBestMatchesNeedsGoals": [
+    "Arcadia Residential Service - 12 week Transition Program",
+    "Group participation - ADAPT / SMART Recovery / COMPASS / Butt it Out",
+    "Althea Pharmacist"
+  ],
+  "HowCloseToManagingSubstanceUse": "10",
+  "CreatedDatetime": "28/08/2021 11:45:28"
+}
