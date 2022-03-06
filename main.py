@@ -30,7 +30,6 @@ def get_sp_doc_fetcher(sph:SharepointHandler, path_versions, sp_prefix)-> Any:
 
 def build_doc_list(ordered_fragments_paths, versions) -> List[GenericDocument]:  
   documents : list[GenericDocument]= []
-  prefixes = []
   sp_docs: list[SharepointDocx] = []
   path_versions = zip(ordered_fragments_paths, versions)
   if any(v for v in versions if v != current_version_all_docs):
@@ -54,7 +53,10 @@ def build_doc_list(ordered_fragments_paths, versions) -> List[GenericDocument]:
 
 if __name__ == '__main__':
   
-  
+  """
+   Warning: adding STaff, SurveyName to Survey sumbmission
+   Todo : load the secrey keys from env
+  """
   # survey_data = {'AssessmentType':'ATOM ITSP Review Assessment','ClientType':'othersuse'}
   # sf = SurveyFragments(survey_data, program='TSS')
   # bluep_json_path = sf.get_blueprint_filepath()
@@ -62,14 +64,14 @@ if __name__ == '__main__':
   # print(ordered_fragments)
 
 
-  sdata_sds = {}
+  # sdata_sds = {}
   with open('./IASubmission.json', 'r') as jsonfile:
     survey_data = json.load(jsonfile)
-    meta_keys = ['SLK', 'AssessmentType', 'ClientType']
-    sdata_sds = {k:v for k, v in survey_data.items() if k in meta_keys or k.startswith('SDS')}
+    # meta_keys = ['SLK', 'AssessmentType', 'ClientType']
+    # sdata_sds = {k:v for k, v in survey_data.items() if k in meta_keys or k.startswith('SDS')}
     
 
-  print(sdata_sds)
+  # print(sdata_sds)
   # survey data
   #data = sdata_sds
   
