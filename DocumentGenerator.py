@@ -1,10 +1,21 @@
-from typing import Generator, List, Any, Dict
+from typing import Generator, List, Any, Tuple
 from docxcompose.composer import Composer
 from docx import Document
 from docx.text.paragraph import Paragraph
+from SharepointHandler import SharepointHandler
+
 from docx_fetch.GenericDocx import GenericDocument
+from docx_fetch.LocalDocx import LocalDocx
+from docx_fetch.SharepointDocx import SharepointDocx
+from utils import secret, text_util
 from utils.dict_util import get_normalised_dict
 from utils.text_util import get_variables_in_text
+import constants as cns
+
+current_version_all_docs = 1.0 # temporary. Each doc would have its current version
+
+root_template_folder = 'template_fragments' #TODO: get rid of this from here
+RUNTIME_STAGE ="Staging" # Prod
 
 
 def get_paras(doc:Document) -> (Generator[Paragraph, None, None], List[Any]):# type: ignore
@@ -19,8 +30,47 @@ def get_paras(doc:Document) -> (Generator[Paragraph, None, None], List[Any]):# t
 def replace_placeholders(normalised_survey_data: dict, doc: Document) -> Generator[Document, None, None]:  # type: ignore
   for para, para_variables in get_paras(doc):
     for pv in para_variables:
-      para.text = para.text.replace(f'%%{pv}%%', normalised_survey_data[pv])
+      sdata = normalised_survey_data.get(pv)
+      if not sdata:
+        print(f"No Data for {pv}.")
+        continue
+      para.text = para.text.replace(f'%%{pv}%%', sdata)
   return doc
+
+
+def get_sp_docs(sph:SharepointHandler, path_versions, sp_prefix)-> List[SharepointDocx]:
+  sp_docs: List[SharepointDocx] = [] 
+  for fp, version in path_versions:    
+    if version != current_version_all_docs:
+      full_path = f"{sp_prefix}/{fp}"
+      sp_docs.append(SharepointDocx(full_path, sph))
+    
+  return sp_docs
+    
+
+def build_doc_list(ordered_fragments_paths, versions) -> List[GenericDocument]:  
+  documents : list[GenericDocument]= []
+  sp_docs: list[SharepointDocx] = []
+  path_versions = zip(ordered_fragments_paths, versions)
+  if any(v for v in versions if v != current_version_all_docs):    
+    sph = SharepointHandler(cns.site_url,
+                            client_id=secret.get_value_for_key(cns.KEY_SHAREPOINT_CLIENTID),
+                            client_secret=secret.get_value_for_key(cns.KEY_SHAREPOINT_SECRET))
+    sp_prefix = f'/Shared Documents/ICT/ATOM/{RUNTIME_STAGE}/{root_template_folder}' # TODO move this 
+    sp_docs = list(reversed(get_sp_docs(sph, path_versions, sp_prefix)))
+
+  for fp, version in  zip(ordered_fragments_paths, versions):     
+    docx_fetcher = None
+    if version == current_version_all_docs:
+      full_path = f"./{root_template_folder}/{fp}"
+      docx_fetcher = LocalDocx(full_path)
+    else:
+      docx_fetcher = sp_docs.pop()
+
+    doc = docx_fetcher.get_document()
+    documents.append(doc)
+  return documents
+
 
 class DocumentGenerator:
 
@@ -29,11 +79,13 @@ class DocumentGenerator:
     self.composer = Composer(Document(base_doc_path))
 
 
-  def compose_document(self, ordered_fragments: List[GenericDocument], survey_data: dict):
-    if ordered_fragments is None:
-      print("FilePaths was null")
-      return None
-    
+  def _compose_document(self, ordered_fragments: List[GenericDocument], survey_data: dict) -> Composer:
+    """
+      Joins all fragments after doing the following:
+      1. Normalises SurveyData Dictionary : Flattens Dict by concat'ing parent+child keys
+          (which matche the doc template variables)
+      2. Does variable replacement from the survey data
+    """    
     survey_data = get_normalised_dict(survey_data)
     for fragment in ordered_fragments:
       #replace variable placeholders here
@@ -42,4 +94,10 @@ class DocumentGenerator:
       self.composer.append(replaced_fragment)
 
     return self.composer
-  
+
+
+  def build_document(self, documents, 
+          survey_data, outfile_format, strip_spaces: bool = False) -> Tuple[Composer, str]:
+    final_doc = self._compose_document(documents, survey_data)
+    output_fname =  text_util.build_str_from_format(outfile_format, survey_data, strip_spaces)
+    return final_doc, output_fname

@@ -28,7 +28,7 @@ class SurveyFragments:
     blueprint_folder = special_program_blueprints.get(self.program, 'common')  
     ass_cltyp_key = f"{self.survey_data['AssessmentType']} + {self.survey_data['ClientType']}"  
     blueprint_type = assesment_clienttype_blueprints.get(ass_cltyp_key)
-    if blueprint_type is not None and blueprint_folder is not None:
+    if blueprint_type and blueprint_folder:
       bp_json = f"./blueprints/{blueprint_folder}/{blueprint_type}.json"
       return bp_json
     return None

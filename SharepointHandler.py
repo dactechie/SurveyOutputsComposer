@@ -1,13 +1,12 @@
 import os, tempfile
-import io
+from io import BytesIO
 from office365.runtime.auth.client_credential import ClientCredential
 from office365.sharepoint.client_context import ClientContext
-
 
 print("**************** > imported SharepointHandler module")
 
 class SharepointHandler:
-  def __init__(self, site_url, client_id, client_secret):    
+  def __init__(self, site_url, client_id, client_secret):
     self.ctx = ClientContext(site_url).with_credentials(ClientCredential(client_id, client_secret))
     
 
@@ -24,7 +23,7 @@ class SharepointHandler:
     with open(download_path, "wb") as local_file:
       bstream = self.ctx.web.get_file_by_server_relative_path(file_url).open_binary_stream().execute_query()
     
-    return io.BytesIO(bstream.value) #type: ignore
+    return BytesIO(bstream.value) #type: ignore
 
   def get_document(self, file_url):# -> bytes:
     return self._open_binary(file_url)
