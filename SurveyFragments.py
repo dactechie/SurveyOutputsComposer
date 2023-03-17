@@ -1,17 +1,29 @@
 import json
 
+# from collections import namedtuple
+# Program = namedtuple('Program',field_names=['code', 'name', 'assessmemt_types'
+#                                             ])
+
+# coco = Program('COCO', 'Arcadia Continuum of Care', ['Supplemental Intake Assessment', 'Post-Treatment Assessment'])
+# resi = Program('ARCA', 'Arcadia Residential Rehab', ['ITSP Review Assessment'])
+
 special_program_blueprints = {
-  'CoCo': 'Arcadia', #blueprints/CoCo
-  'Arcadia':'Arcadia'
+  'COCO': 'Arcadia', #blueprints/CoCo
+  'Arcadia':'Arcadia',
+  'PSYNSW': 'Psychologist',
+  'PSYACT': 'Psychologist',
 }
+
 
 assesment_clienttype_blueprints = {
   'ATOM Initial Assessment + ownuse': 'initial_assessment_ownuse',
   'ATOM Initial Assessment + othersuse': 'initial_assessment_othersuse',  
   'ATOM ITSP Review Assessment + ownuse': 'itsp_review_ownuse',
   'ATOM ITSP Review Assessment + othersuse': 'itsp_review_othersuse',
+  
+  # 'Arcadia Assessments + ownuse': 'arcadia_ownuse', # NOTE 'Arcadai Assessments is not an asses type
+  'ATOM Initial Assessment + PsychiatristReferral': 'initial_assessment_psychref'
 
-  'Arcadia Assessments + ownuse': 'arcadia_ownuse',
 }
 
 
@@ -40,14 +52,25 @@ class SurveyFragments:
       raise Exception("No document for section name")
     doc_filepath = f"{doc_path}/{section_name}.docx"
     return doc_filepath
+  
+
+  def get_sections_in_data(self, blueprint, conditions)-> list:    
+      # if the data has a question from the section then we show the section in the document
+    sections = [ section for section in blueprint['_Layout']['General'] 
+                  if section not in conditions 
+                  or conditions[section]['Question'] in self.survey_data
+                ]
+    return sections
+
 
   def get_fragpaths(self, blueprint_path):
     with open(blueprint_path) as jsonfile:
       blueprint = json.load(jsonfile)
+      conditions = blueprint.get("_Conditions")
       orderd_frag_filepaths = [SurveyFragments.get_docpaths_from_section(blueprint['_Sections'], section) 
-                  for section in blueprint['_Layout']['General'] ] 
+                  for section in self.get_sections_in_data(blueprint, conditions)
+                  ] 
       return orderd_frag_filepaths
-    return None  
     
 
 

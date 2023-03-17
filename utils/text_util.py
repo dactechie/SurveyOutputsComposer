@@ -2,7 +2,7 @@ import re
 
 placeholder_pattern = re.compile(r'%%([^%%]+)%%')
 
-def get_variables_in_text(text: str):
+def get_variables_in_text(text: str) -> 'list':
   matches = re.findall(placeholder_pattern, text)
   return matches
 

@@ -16,7 +16,7 @@ current_version_all_docs = 1.0 # temporary. Each doc would have its current vers
 
 root_template_folder = 'template_fragments' #TODO: get rid of this from here
 RUNTIME_STAGE ="Staging" # Prod
-
+SP_PATH_PREFIX = f'/Shared Documents/ICT/ATOM/{RUNTIME_STAGE}/{root_template_folder}' # TODO move this
 
 def get_paras(doc:Document) -> (Generator[Paragraph, None, None], List[Any]):# type: ignore
   for table in doc.tables:
@@ -37,7 +37,7 @@ def replace_placeholders(normalised_survey_data: dict, doc: Document) -> Generat
       para.text = para.text.replace(f'%%{pv}%%', sdata)
   return doc
 
-
+# TODO: handle multiple DOC versions
 def get_sp_docs(sph:SharepointHandler, path_versions, sp_prefix)-> List[SharepointDocx]:
   sp_docs: List[SharepointDocx] = [] 
   for fp, version in path_versions:    
@@ -56,10 +56,10 @@ def build_doc_list(ordered_fragments_paths, versions) -> List[GenericDocument]:
     sph = SharepointHandler(cns.site_url,
                             client_id=secret.get_value_for_key(cns.KEY_SHAREPOINT_CLIENTID),
                             client_secret=secret.get_value_for_key(cns.KEY_SHAREPOINT_SECRET))
-    sp_prefix = f'/Shared Documents/ICT/ATOM/{RUNTIME_STAGE}/{root_template_folder}' # TODO move this 
-    sp_docs = list(reversed(get_sp_docs(sph, path_versions, sp_prefix)))
+     
+    sp_docs = list(reversed(get_sp_docs(sph, path_versions, SP_PATH_PREFIX)))
 
-  for fp, version in  zip(ordered_fragments_paths, versions):     
+  for fp, version in zip(ordered_fragments_paths, versions):     
     docx_fetcher = None
     if version == current_version_all_docs:
       full_path = f"./{root_template_folder}/{fp}"
@@ -80,12 +80,7 @@ class DocumentGenerator:
 
 
   def _compose_document(self, ordered_fragments: List[GenericDocument], survey_data: dict) -> Composer:
-    """
-      Joins all fragments after doing the following:
-      1. Normalises SurveyData Dictionary : Flattens Dict by concat'ing parent+child keys
-          (which matche the doc template variables)
-      2. Does variable replacement from the survey data
-    """    
+ 
     survey_data = get_normalised_dict(survey_data)
     for fragment in ordered_fragments:
       #replace variable placeholders here
@@ -98,6 +93,15 @@ class DocumentGenerator:
 
   def build_document(self, documents, 
           survey_data, outfile_format, strip_spaces: bool = False) -> Tuple[Composer, str]:
+    """
+      A. Composes Document:
+        Joins all fragments after doing the following:
+        1. Normalises SurveyData Dictionary : Flattens Dict by concat'ing parent+child keys
+            (which matche the doc template variables)
+        2. Does variable replacement from the survey data
+
+      B. Constructs the output file name
+    """             
     final_doc = self._compose_document(documents, survey_data)
     output_fname =  text_util.build_str_from_format(outfile_format, survey_data, strip_spaces)
     return final_doc, output_fname

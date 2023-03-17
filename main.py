@@ -31,7 +31,8 @@ def main (data: dict, outfile_format: str) -> None:
   bluep_json_path = sf.get_blueprint_filepath()
   ordered_fragments_paths = sf.get_fragpaths(bluep_json_path)
 
-  versions = [1.0, 1.0 , 1.0, 1.5]
+  # versions = [1.0, 1.0 , 1.0, 1.5]
+  versions = [1.0, 1.0 , 1.0, 1.0]
   documents = DocumentGenerator.build_doc_list(ordered_fragments_paths, versions)
   
   if not documents:
@@ -39,10 +40,8 @@ def main (data: dict, outfile_format: str) -> None:
     return
 
   doc_gen = DocumentGenerator.DocumentGenerator(f"./{root_template_folder}/common/Base.docx")
-
   final_doc, output_fname = doc_gen.build_document(documents, survey_data, outfile_format, strip_spaces=True)
-
-  # output_fname = f"{survey_data['SLK']}_{survey_data['AssessmentType']}_{survey_data['ClientType']}.docx"
+  
   final_doc.save(f"{output_fname}.docx")
   
   print(f"Saved document: {output_fname}.")
