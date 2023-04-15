@@ -66,30 +66,29 @@ def setup_choices_map(survey_questionnaire:dict)-> dict:
         choices_map[element["name"]] = element["choices"]
   return choices_map
 
+'''
+  Get Values for Keys, so we don't show the choice-id, but the text of the choice
+'''
+def translate_where_possible(survey_data:dict):
+  qstnr = get_survey_questionnaire(survey_data['AssessmentType'])
+  choices_map = setup_choices_map (qstnr)
 
-def translate_where_possible(choices_map:dict, survey_data:dict):
   translated = survey_data.copy()
   for question_id, answer in survey_data.items():
     choices:list = choices_map.get(question_id,[]) # SLK will return None
     for choice in choices:
       if isinstance(choice,dict):        
+        # TODO: need to handle checkbox (mutliple choices for a question)
         if choice.get("value") == answer:
           translated[question_id] = choice.get("text")
   return translated
-      
 
     # for choice in choces
-
-
 
 if __name__ == '__main__':
   
   survey_data:dict = get_json_data('./Files/FlattenedSurveySubmission.json')
-  qstnr = get_survey_questionnaire(survey_data['AssessmentType'])
-
-  choices_map = setup_choices_map (qstnr) 
-
-  translated_answers = translate_where_possible(choices_map, survey_data['SurveyData'])
+  translated_answers = translate_where_possible(survey_data['SurveyData'])
 
   # process
   

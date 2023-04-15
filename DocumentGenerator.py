@@ -1,4 +1,4 @@
-from typing import Generator, List, Any, Tuple
+from typing import Generator, List, Any
 from docxcompose.composer import Composer
 from docx import Document
 from docx.text.paragraph import Paragraph
@@ -7,8 +7,7 @@ from SharepointHandler import SharepointHandler
 from docx_fetch.GenericDocx import GenericDocument
 from docx_fetch.LocalDocx import LocalDocx
 from docx_fetch.SharepointDocx import SharepointDocx
-from utils import secret, text_util
-from utils.dict_util import get_normalised_dict
+from utils import secret
 from utils.text_util import get_variables_in_text
 import constants as cns
 
@@ -81,7 +80,7 @@ class DocumentGenerator:
 
   def _compose_document(self, ordered_fragments: List[GenericDocument], survey_data: dict) -> Composer:
  
-    survey_data = get_normalised_dict(survey_data)
+    # survey_data = get_normalised_dict(survey_data)
     for fragment in ordered_fragments:
       #replace variable placeholders here
           
@@ -92,7 +91,7 @@ class DocumentGenerator:
 
 
   def build_document(self, documents, 
-          survey_data, outfile_format, strip_spaces: bool = False) -> Tuple[Composer, str]:
+          survey_data) -> Composer:
     """
       A. Composes Document:
         Joins all fragments after doing the following:
@@ -103,5 +102,5 @@ class DocumentGenerator:
       B. Constructs the output file name
     """             
     final_doc = self._compose_document(documents, survey_data)
-    output_fname =  text_util.build_str_from_format(outfile_format, survey_data, strip_spaces)
-    return final_doc, output_fname
+   
+    return final_doc

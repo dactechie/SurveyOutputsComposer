@@ -1,0 +1,18 @@
+{
+  "_Sections": {
+    "Intro": "common/ownuse/Intro.docx",
+    "SDS": "common/SDS.docx",
+    "EverydayLiving": "Roles/AODCounsellor/EverydayLiving_OwnUse.docx",
+    "HousingAndSafety": "Roles/AODCounsellor/HousingAndSafety_OwnUse.docx",
+    "Relationships": "Roles/AODCounsellor/INAS/RelationshipParentingAndSocialWellbeing_OwnUse.docx",
+    "FinalChecklist": "Roles/AODCounsellor/INAS/FinalChecklist.docx"
+  },
+  "_Layout": [
+    { "Intro": 1 },
+    { "SDS": "SDSIsAODUseOutOfControl" },
+    { "EverydayLiving": 1 },
+    { "HousingAndSafety": 1 },
+    { "Relationships": 1 },
+    { "FinalChecklist": 1 }
+  ]
+}

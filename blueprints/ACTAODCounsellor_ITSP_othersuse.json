@@ -1,0 +1,20 @@
+{
+  "_Sections": {
+    "Intro": "common/othersuse/Intro.docx",
+    "EverydayLiving": "Roles/ACT/AODCounsellor/ITSP/EverdayLiving_OwnUse.docx",
+    "HousingAndSafety": "Roles/ACT/AODCounsellor/ITSP/HousingAndSafety.docx",
+    "Relationships": "Roles/AODCounsellor/RelationshipParentingAndSocialWellbeing.docx",
+    "SDS": "common/SDS.docx",
+    "CDS5": "Roles/ACT/AODCounsellor/CDS5.docx",
+    "FinalChecklist": "Roles/AODCounsellor/ITSP/FinalChecklist.docx"
+  },
+  "_Layout": [
+    { "Intro": 1 },
+    { "SDS": "SDSIsAODUseOutOfControl" },
+    { "CDS5": "CDS5RateAddictiontoCigarettes" },
+    { "EverydayLiving": 1 },
+    { "HousingAndSafety": 1 },
+    { "Relationships": 1 },
+    { "FinalChecklist": 1 }
+  ]
+}
